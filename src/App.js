@@ -3,6 +3,8 @@ import MovieList from "./components/MovieList";
 import Container from "react-bootstrap/Container";
 import Filter from "./components/Filter";
 import AddMovie from "./components/AddMovie";
+import { Route, Routes } from "react-router-dom";
+import Desctrail from "./components/Desctrail";
 function App() {
   const [movies, setMovies] = useState([
     {
@@ -95,7 +97,15 @@ function App() {
           setRating={setRating}
         />
         <AddMovie setMovies={setMovies} />
-        <MovieList movies={movies} title={title} rating={rating} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <MovieList movies={movies} title={title} rating={rating} />
+            }
+          />
+          <Route path="/description/:id" element={<Desctrail movies={movies}/>}/>
+        </Routes>
       </Container>
     </>
   );
